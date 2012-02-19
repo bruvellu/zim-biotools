@@ -6,15 +6,15 @@ it to a notebook page in [Zim Desktop Wiki](http://zim-wiki.org/).
 
 Example of output:
 
-> @Drosophila_melanogaster @gene 
-> 
-> http://www.ncbi.nlm.nih.gov/protein/17647207?report=fasta
-> 
-> >gi|17647207|ref|NP_523989.1| boule, isoform B [Drosophila melanogaster]
-> MHKIAAAPPPSATPGGGLETPLAAPKYGTLIPNRIFVGGISGDTTEADLTRVFSAYGTVK
-> STKIIVDRAGVSKGYGFVTFETEQEAQRLQADGECVVLRDRKLNIAPAIKKQPNPLQSIV
-> ATNGAVYYTTTPPAPISNIPMDQFAAAVYPPAAGVPAIYPPSAMQYQPFYQYYSVPMNVP
-> TIWPQNYQENHSPLLHSPTSNPHSPHSQSHPQSPCWSIEDLRDTLPRV
+    @Drosophila_melanogaster @gene 
+    
+    http://www.ncbi.nlm.nih.gov/protein/17647207?report=fasta
+    
+    >gi|17647207|ref|NP_523989.1| boule, isoform B [Drosophila melanogaster]
+    MHKIAAAPPPSATPGGGLETPLAAPKYGTLIPNRIFVGGISGDTTEADLTRVFSAYGTVK
+    STKIIVDRAGVSKGYGFVTFETEQEAQRLQADGECVVLRDRKLNIAPAIKKQPNPLQSIV
+    ATNGAVYYTTTPPAPISNIPMDQFAAAVYPPAAGVPAIYPPSAMQYQPFYQYYSVPMNVP
+    TIWPQNYQENHSPLLHSPTSNPHSPHSQSHPQSPCWSIEDLRDTLPRV
 
 Dependencies
 ------------
@@ -33,9 +33,9 @@ Installation
 3. Click the `+` button to add a new tool.
 4. Fill in the fields with the following:
 
-> Name: Gene Fetcher
-> Description: Fetches aminoacid sequences from NCBI
-> Command: `/home/you/seqfetch.py your@email.com %t %s`
+        Name: Gene Fetcher
+        Description: Fetches aminoacid sequences from NCBI
+        Command: /home/you/seqfetch.py your@email.com %t %s
 
 5. Activating "Show in the toolbar" checkbox is useful, but not required (as 
    well as an icon).
