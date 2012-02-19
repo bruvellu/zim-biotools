@@ -1,7 +1,7 @@
 #!/usr/bin/python 
 # -*- coding: utf-8 -*-
 
-'''Gene Fetcher tool for Zim.
+'''Gene fetcher tool for Zim.
 
 Fetch aminoacid sequences using NCBI identifier. Sequence is written to the
 notebook page with the corresponding URL for quick access.
@@ -30,9 +30,13 @@ def main(seq_id, page):
     # Parse gene id to generate url.
     gene_id = record.id.split('|')[1]
     url = 'http://www.ncbi.nlm.nih.gov/protein/%s?report=fasta' % gene_id
+    # Parse organism (dirtyly...).
+    species = record.description.split('[')[1].split(']')[0].replace(' ', '_')
 
     # Write data to file.
     f.write('\n')
+    f.write('@%s @gene ' % species)
+    f.write('\n\n')
     f.write(url)
     f.write('\n\n')
     f.write(record.format('fasta'))
