@@ -18,9 +18,10 @@ Dependencies:
 
 import sys
 from Bio import Entrez, SeqIO
-Entrez.email = 'email@email.com' # Fill with your email address.
 
-def main(seq_id, page):
+def main(user_email, seq_id, page):
+    #Set email address required for Entrez.
+    Entrez.email = user_email
     # Open notebook page as file.
     f = open(page, 'a')
     # Fetch data via Entrez using the sequence id as FASTA.
@@ -46,4 +47,4 @@ def main(seq_id, page):
     sys.exit(0)
 
 if __name__ == '__main__':
-    main(sys.argv[1], sys.argv[2])
+    main(sys.argv[1], sys.argv[2], sys.argv[3])
