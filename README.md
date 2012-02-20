@@ -37,6 +37,8 @@ Installation
         Description: Fetches aminoacid sequences from NCBI
         Command: /home/you/seqfetch.py your@email.com %t %s
 
+    Arguments are **email address**, **sequence identifier**, and **page filepath**.
+
 5. Activating "Show in the toolbar" checkbox is useful, but not required (as 
    well as an icon).
 6. Click OK and you are ready.
