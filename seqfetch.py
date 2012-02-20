@@ -31,7 +31,7 @@ def main(user_email, seq_id, page):
     # Parse gene id to generate url.
     gene_id = record.id.split('|')[1]
     url = 'http://www.ncbi.nlm.nih.gov/protein/%s?report=fasta' % gene_id
-    # Parse organism (dirtyly...).
+    # Parse organism (dirtily...).
     species = record.description.split('[')[1].split(']')[0].replace(' ', '_')
 
     # Write data to file.
