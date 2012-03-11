@@ -51,7 +51,9 @@ def main(user_email, seq_id, page):
     f.write('\n\n')
 
     # Sequence itself.
+    f.write("'''\n")
     f.write(record.format('fasta'))
+    f.write("\n'''\n")
 
     # Close file.
     f.close()
