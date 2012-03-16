@@ -43,7 +43,7 @@ def main(user_email, seq_id, page):
     f.write('\n')
 
     # Default tags.
-    f.write('@%s @gene ' % species)
+    f.write('@%s ' % species)
     f.write('\n\n')
 
     # NCBI sequence url.
@@ -51,6 +51,7 @@ def main(user_email, seq_id, page):
     f.write('\n\n')
 
     # Sequence itself.
+    f.write('@gene \n')
     f.write("'''\n")
     f.write(record.format('fasta'))
     f.write("\n'''\n")
