@@ -63,4 +63,8 @@ def main(user_email, seq_id, page):
     sys.exit(0)
 
 if __name__ == '__main__':
+    # Arguments:
+    #   1. User email
+    #   2. Sequence ID
+    #   3. Output file
     main(sys.argv[1], sys.argv[2], sys.argv[3])
