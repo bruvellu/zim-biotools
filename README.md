@@ -1,8 +1,21 @@
-Simple gene fetcher tool for Zim
-================================
+# Zim Bio Tools
+
+Collection of useful scripts for biologists using [Zim Desktop Wiki](http://zim-wiki.org/).
+
+# Dependencies
+
+You need **Python** (which is most likely installed) and **Biopython** packages, so the command below should be enough:
+
+    sudo apt-get install python-biopython
+
+Do not forget Zim :P
+
+# Scripts
+
+## Simple gene fetcher
 
 This is a simple custom tool to fetch aminoacid sequences from NCBI and append 
-it to a notebook page in [Zim Desktop Wiki](http://zim-wiki.org/).
+it to a notebook page Zim.
 
 Example of output:
 
@@ -16,17 +29,8 @@ Example of output:
     ATNGAVYYTTTPPAPISNIPMDQFAAAVYPPAAGVPAIYPPSAMQYQPFYQYYSVPMNVP
     TIWPQNYQENHSPLLHSPTSNPHSPHSQSHPQSPCWSIEDLRDTLPRV
 
-Dependencies
-------------
 
-You need **Python** (which is most likely installed) and **Biopython** packages, so the command below should be enough:
-
-    sudo apt-get install python-biopython
-
-Do not forget Zim :P
-
-Installation
-------------
+### Installation
 
 1. Copy `seqfetch.py` to any folder.
 2. Open **Zim** and go to **Tools** > **Custom Tools**.
@@ -48,8 +52,7 @@ a valid email address to the **Command** field. A valid email is required to
 use the Entrez Programming Utilities of NCBI, please refer to the [usage 
 guidelines](http://www.ncbi.nlm.nih.gov/books/NBK25497/#chapter2.Usage_Guidelines_and_Requiremen) for further information.
 
-Usage
------
+### Usage
 
 All you need is the identifier of the sequence you want to fetch, it looks like this: **NP_523989.1**.
 
