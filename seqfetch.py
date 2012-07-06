@@ -1,4 +1,4 @@
-#!/usr/bin/python 
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 '''Gene fetcher tool for Zim.
@@ -11,13 +11,14 @@ Although any identifier can be used, there may be unexpected problems
 Thus, only protein sequences are currently supported.
 
 Dependencies:
-    Python 2.7
-    Biopython 1.56
+    - Python 2.7
+    - Biopython 1.56
 
 '''
 
 import sys
 from Bio import Entrez, SeqIO
+
 
 def main(user_email, seq_id, page):
     #Set email address required for Entrez.
