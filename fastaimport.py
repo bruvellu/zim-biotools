@@ -105,4 +105,6 @@ def main(fasta_file, root_page):
     sys.exit(0)
 
 if __name__ == '__main__':
+    # arg1: fasta file
+    # arg2: root page
     main(sys.argv[1], sys.argv[2])

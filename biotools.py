@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-'''Common library for zim-biotools'''
+'''Common library for zim-biotools.'''
 
 from datetime import datetime
 
@@ -10,11 +10,7 @@ def make_header(title):
     '''Return string with header of a Zim page.'''
 
     timestamp = datetime.now().replace(microsecond=0)
-    header = '''Content-Type: text/x-zim-wiki\n
-                Wiki-Format: zim 0.4\n
-                Creation-Date: %s\n\n
-                ====== %s ======\n
-                Created %s\n\n''' % (timestamp.isoformat(), title, timestamp.strftime('%A %d %B %Y'))
+    header = '''Content-Type: text/x-zim-wiki\nWiki-Format: zim 0.4\nCreation-Date: %s\n\n====== %s ======\nCreated %s\n\n''' % (timestamp.isoformat(), title, timestamp.strftime('%A %d %B %Y'))
     return header
 
 
