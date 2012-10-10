@@ -22,3 +22,4 @@ def print_seq(sequence, page):
             page.write('\n')
             i = 0
         page.write(char)
+        i += 1
