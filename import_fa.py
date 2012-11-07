@@ -19,7 +19,7 @@ from biotools import make_header, make_dir
 
 def main(fasta_file, root_page):
     # Remove extension.
-    root = root_page[:-4]
+    root = os.path.splitext(root_page)[0]
 
     # Make sure there is a folder to the root.
     make_dir(root)
