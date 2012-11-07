@@ -1,25 +1,50 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-'''Common library for zim-biotools.'''
+# Bruno C. Vellutini <organelas@gmail.com>
 
-from datetime import datetime
+'''Bioinformatics plugin for Zim.'''
+
+import gtk
+
+from zim.plugins import PluginClass
+
+ui_xml = '''
+<ui>
+    <menubar name='menubar'>
+        <menu action='tools_menu'>
+            <placeholder name='plugin_items'>
+                <menuitem action='fetch_ncbi'/>
+            </placeholder>
+        </menu>
+    </menubar>
+</ui>
+'''
+
+ui_actions = (
+    # name, stock id, label, accelerator, tooltip, readonly
+    ('fetch_ncbi', 'gtk-ncbi', _('_Fetch sequence'), '<ctrl><alt>F', 'Fetch NCBI', True),  # T: menu item
+
+)
 
 
-def make_header(title):
-    '''Return string with header of a Zim page.'''
+class BioTools(PluginClass):
 
-    timestamp = datetime.now().replace(microsecond=0)
-    header = '''Content-Type: text/x-zim-wiki\nWiki-Format: zim 0.4\nCreation-Date: %s\n\n====== %s ======\nCreated %s\n\n''' % (timestamp.isoformat(), title, timestamp.strftime('%A %d %B %Y'))
-    return header
+    plugin_info = {
+        'name': _('BioTools'),  # T: plugin name
+        'description': _('This plugin provides useful bioinformatics tools.'),  # T: plugin description
+        'author': 'Bruno C. Vellutini',
+    }
 
+    def __init__(self, ui):
+        PluginClass.__init__(self, ui)
 
-def print_seq(sequence, page):
-    '''Print well-formatted sequence.'''
-    i = 0
-    for char in sequence:
-        if i == 60:
-            page.write('\n')
-            i = 0
-        page.write(char)
-        i += 1
+        # Add menu items.
+        if self.ui.ui_type == 'gtk':
+            self.ui.add_actions(ui_actions, self)
+            self.ui.add_ui(ui_xml, self)
+
+    def fetch_ncbi(self, ref=None):
+        '''Fetch aminoacid sequences using NCBI identifier.'''
+        # Get selection, otherwise abort!
+        buffer = self.ui.mainwindow.pageview.view.get_buffer()
+        print buffer
