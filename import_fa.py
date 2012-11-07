@@ -14,9 +14,7 @@ import sys
 from Bio import SeqIO
 from Bio.SeqRecord import SeqRecord
 
-from biotools import make_header, print_seq
-
-#FIXME If there are no subpages, create them.
+from biotools import make_header, make_dir
 
 
 def main(fasta_file, root_page):
@@ -24,12 +22,7 @@ def main(fasta_file, root_page):
     root = root_page[:-4]
 
     # Make sure there is a folder to the root.
-    try:
-        os.mkdir(root)
-    except:
-        pass
-
-    #FIXME Get absolute path?
+    make_dir(root)
 
     # Define organism tag by reading the root name.
     organism = os.path.basename(root)
@@ -38,7 +31,6 @@ def main(fasta_file, root_page):
     loci = SeqIO.parse(fasta_file, 'fasta')
 
     # Create loci page and directory.
-    #XXX Write some information in the loci page? Maybe log?
     loci_file = os.path.join(root, 'Loci.txt')
     loci_page = open(loci_file, 'w')
     loci_page.write(make_header('Loci'))
@@ -46,10 +38,7 @@ def main(fasta_file, root_page):
 
     # Define Loci directory.
     loci_dir = os.path.join(root, 'Loci')
-    try:
-        os.mkdir(loci_dir)
-    except:
-        pass
+    make_dir(loci_dir)
 
     # Iterate over each locus.
     for locus in loci:
@@ -83,7 +72,7 @@ def main(fasta_file, root_page):
 
         # Translate using the correct frame.
         translated_seq = locus.seq[frame_step:].translate()
-        # Create SeqRecord for protein for better handling.
+        # Create SeqRecord for protein.
         protein = SeqRecord(translated_seq, id=locus.id, name=locus.name, description=locus.description)
 
         # Create locus_page and write header.
@@ -95,16 +84,15 @@ def main(fasta_file, root_page):
         locus_page.write('\n\n')
 
         # Write sequence in FASTA format.
-        locus_page.write('@locus \n')  # TODO add length of seq.
+        locus_page.write('@locus %d bp \n' % len(locus.seq))
         locus_page.write("'''\n")
         locus_page.write(locus.format('fasta'))
         locus_page.write("\n'''\n")
 
         # Write protein sequence.
-        locus_page.write('@protein \n')  # TODO add length of prot.
+        locus_page.write('@protein \n')
         locus_page.write("'''\n")
         locus_page.write(protein.format('fasta'))
-        #print_seq(protein, locus_page)
         locus_page.write("\n'''\n")
 
         # Close locus file.
