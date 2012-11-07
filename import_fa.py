@@ -12,7 +12,7 @@ Dependencies:
 import os
 import sys
 from Bio import SeqIO
-from Bio.Seq import translate
+from Bio.SeqRecord import SeqRecord
 
 from biotools import make_header, print_seq
 
@@ -22,6 +22,14 @@ from biotools import make_header, print_seq
 def main(fasta_file, root_page):
     # Remove extension.
     root = root_page[:-4]
+
+    # Make sure there is a folder to the root.
+    try:
+        os.mkdir(root)
+    except:
+        pass
+
+    #FIXME Get absolute path?
 
     # Define organism tag by reading the root name.
     organism = os.path.basename(root)
@@ -62,7 +70,8 @@ def main(fasta_file, root_page):
             # If not, create page.
             pass
 
-        # Make plus strand and protein sequence.
+        # Identify the frame and the strand by parsing the description.
+        # Example: >Lrub_5432 | frame: +1 | candidates: Six3-6, Optix
         frame = int(locus.description.split('|')[-2][-2])
         frame_step = frame - 1
         strand = locus.description.split('|')[-2][-3]
@@ -72,10 +81,10 @@ def main(fasta_file, root_page):
             locus.seq = locus.seq.reverse_complement()
             locus.description = locus.description.replace('frame: %s%d' % (strand, frame), 'frame: +%d' % frame)
 
-        # Convert to plain string to translate into protein.
-        sequence = str(locus.seq)
-        sequence = sequence[frame_step:]
-        protein = translate(sequence)
+        # Translate using the correct frame.
+        translated_seq = locus.seq[frame_step:].translate()
+        # Create SeqRecord for protein for better handling.
+        protein = SeqRecord(translated_seq, id=locus.id, name=locus.name, description=locus.description)
 
         # Create locus_page and write header.
         locus_page = open(locus_file, 'w')
@@ -86,16 +95,16 @@ def main(fasta_file, root_page):
         locus_page.write('\n\n')
 
         # Write sequence in FASTA format.
-        #TODO Format into verbatim.
-        locus_page.write('@locus \n')
+        locus_page.write('@locus \n')  # TODO add length of seq.
         locus_page.write("'''\n")
         locus_page.write(locus.format('fasta'))
         locus_page.write("\n'''\n")
 
         # Write protein sequence.
-        locus_page.write('@protein \n')
+        locus_page.write('@protein \n')  # TODO add length of prot.
         locus_page.write("'''\n")
-        print_seq(protein, locus_page)
+        locus_page.write(protein.format('fasta'))
+        #print_seq(protein, locus_page)
         locus_page.write("\n'''\n")
 
         # Close locus file.
