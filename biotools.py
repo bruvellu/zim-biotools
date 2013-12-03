@@ -2,7 +2,7 @@
 
 # Bruno C. Vellutini <organelas@gmail.com>
 
-'''Bioinformatics plugin for Zim.'''
+'''Bioinformatics plugin for Zim. [WARNING, NOT FUNCTIONAL]'''
 
 import gtk
 

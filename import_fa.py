@@ -14,7 +14,7 @@ import sys
 from Bio import SeqIO
 from Bio.SeqRecord import SeqRecord
 
-from biotools import make_header, make_dir
+from biolib import make_header, make_dir
 
 
 def main(fasta_file, root_page):

@@ -102,6 +102,7 @@ def main(blaster_file, root_page):
                 # Start over adding the next line.
                 plain += line
                 contig_id = splitted[0]
+
         elif space_count == 2 and not reciprocal:
                 # Reset variables.
                 plain = ''

@@ -1,6 +1,6 @@
-# Zim Bio Tools
+# Zim BioTools
 
-Collection of useful scripts for biologists using [Zim Desktop Wiki](http://zim-wiki.org/).
+Collection of useful scripts for biologists using [Zim Desktop Wiki](http://zim-wiki.org/). One day it might become a plugin.
 
 # Dependencies
 
@@ -12,7 +12,7 @@ Do not forget Zim :P
 
 # Scripts
 
-## Simple gene fetcher
+## Simple gene fetcher (`fetch_ncbi.py`)
 
 This is a simple custom tool to fetch aminoacid sequences from NCBI and append 
 it to a notebook page Zim.
@@ -32,16 +32,16 @@ Example of output:
 
 ### Installation
 
-1. Copy `seqfetch.py` to any folder.
+1. Copy `fetch_ncbi.py` to any folder.
 2. Open **Zim** and go to **Tools** > **Custom Tools**.
 3. Click the `+` button to add a new tool.
 4. Fill in the fields with the following:
 
         Name: Gene Fetcher
         Description: Fetches aminoacid sequences from NCBI
-        Command: /home/you/seqfetch.py your@email.com %t %s
+        Command: /home/user/anylocation/fetch_ncbi.py your@email.com %t %s
 
-    Arguments are **email address**, **sequence identifier**, and **page filepath**.
+    Arguments are (1) **email address**, (2) **sequence identifier**, and (3) **page filepath**.
 
 5. Activating "Show in the toolbar" checkbox is useful, but not required (as 
    well as an icon).
@@ -49,7 +49,7 @@ Example of output:
 
 Remember to change to the correct file location in your system and to include 
 a valid email address to the **Command** field. A valid email is required to 
-use the Entrez Programming Utilities of NCBI, please refer to the [usage 
+use the Entrez Programming Utilities of NCBI, please refer to their [usage 
 guidelines](http://www.ncbi.nlm.nih.gov/books/NBK25497/#chapter2.Usage_Guidelines_and_Requiremen) for further information.
 
 ### Usage
@@ -60,3 +60,13 @@ All you need is the identifier of the sequence you want to fetch, it looks like 
 2. Run Gene Fetcher tool by clicking in the toolbar icon or via Tools > Gene 
    Fetcher.
 3. Data will be appended to the end of the page.
+
+## FASTA importer (`import_fa.py`)
+
+Import each sequence of a FASTA file as a Zim page.
+
+### Usage
+
+1. Write down the path to a FASTA file.
+2. Run FASTA importer.
+3. Sub-pages will be created under a page named `Loci`.
