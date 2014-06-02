@@ -7,8 +7,9 @@ Collection of useful scripts for biologists using [Zim Desktop Wiki](http://zim-
 You need **Python** (which is most likely installed) and **Biopython** packages, so the command below should be enough:
 
     sudo apt-get install python-biopython
-
-Do not forget Zim :P
+    mkdir -p ~/.local/lib/python2.7/site-packages/zim/plugins
+    cd ~/.local/lib/python2.7/site-packages/zim/plugins
+    git clone https://github.com/nelas/zim-biotools.git
 
 # Scripts
 
