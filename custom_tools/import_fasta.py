@@ -101,14 +101,13 @@ for locus in loci:
 
     # Create locus_page and write header.
     locus_page = open(locus_file, 'w')
-    locus_page.write(make_header(locus_id))
+    locus_page.write("{header}".format(header=make_header(locus_id)))
 
     # Write organism name.
-    locus_page.write('@{}'.format(organism))
-    locus_page.write('\n\n')
+    locus_page.write("@{}\n\n".format(organism))
 
     # Write sequence in FASTA format.
-    locus_page.write('@locus {} bp \n'.format(len(locus.seq)))
+    locus_page.write("@locus {} bp \n'''\n".format(len(locus.seq)))
     locus_page.write("'''\n")
     locus_page.write(locus.format('fasta'))
     locus_page.write("\n'''\n")
