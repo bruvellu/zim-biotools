@@ -70,7 +70,7 @@ for locus in loci:
     locus_id = locus.id.replace('/', '-')
 
     # Define locus file.
-    locus_file = os.path.join(loci_dir, '%s.txt' % locus_id)
+    locus_file = os.path.join(loci_dir, '{}.txt'.format(locus_id))
 
     # Verify if page already exists.
     try:
@@ -91,10 +91,11 @@ for locus in loci:
     # Always garantee that the sequence is a plus strand.
     if strand == '-':
         locus.seq = locus.seq.reverse_complement()
-        locus.description = locus.description.replace('frame: %s%d' % (strand, frame), 'frame: +%d' % frame)
+        locus.description = locus.description.replace('frame: {}{}'.format(strand, frame), 'frame: +{}'.format(frame))
 
     # Translate using the correct frame.
     translated_seq = locus.seq[frame_step:].translate()
+
     # Create SeqRecord for protein.
     protein = SeqRecord(translated_seq, id=locus.id, name=locus.name, description=locus.description)
 
@@ -103,11 +104,11 @@ for locus in loci:
     locus_page.write(make_header(locus_id))
 
     # Write organism name.
-    locus_page.write('@%s ' % organism)
+    locus_page.write('@{}'.format(organism))
     locus_page.write('\n\n')
 
     # Write sequence in FASTA format.
-    locus_page.write('@locus %d bp \n' % len(locus.seq))
+    locus_page.write('@locus {} bp \n'.format(len(locus.seq)))
     locus_page.write("'''\n")
     locus_page.write(locus.format('fasta'))
     locus_page.write("\n'''\n")
