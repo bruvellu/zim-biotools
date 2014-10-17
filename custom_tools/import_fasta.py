@@ -107,13 +107,13 @@ for locus in loci:
     locus_page.write("@{}\n\n".format(organism))
 
     # Write sequence in FASTA format.
-    locus_page.write("@locus {} bp \n'''\n".format(len(locus.seq)))
+    locus_page.write("@locus {} bp\n".format(len(locus.seq)))
     locus_page.write("'''\n")
     locus_page.write(locus.format('fasta'))
     locus_page.write("\n'''\n")
 
     # Write protein sequence.
-    locus_page.write('@protein \n')
+    locus_page.write('@protein\n')
     locus_page.write("'''\n")
     locus_page.write(protein.format('fasta'))
     locus_page.write("\n'''\n")
